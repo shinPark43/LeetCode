@@ -5,17 +5,16 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        start_idx = 0
-        length = len(nums) - 1
+        left = 0
+        right = len(nums) - 1
         total = 0
 
         nums.sort()
 
-        while start_idx < length:
-            if (nums[start_idx] + nums[length]) < target:
-                total += (length - start_idx)
-                start_idx += 1
+        while left < right:
+            if (nums[left] + nums[right]) < target:
+                total += (right - left)
+                left += 1
             else:
-                length -= 1
-
+                right -= 1
         return total
