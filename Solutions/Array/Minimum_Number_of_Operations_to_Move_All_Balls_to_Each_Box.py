@@ -4,18 +4,25 @@ class Solution(object):
         :type boxes: str
         :rtype: List[int]
         """
-        index_with_one = []
-        answer = []
+        balls = 0
+        operations = 0
+        length = len(boxes)
+        answer = [0]*length
 
-        for i in range(0, len(boxes)):
+        # Left sweep
+        for i in range(0, length):
             if boxes[i] == '1':
-                index_with_one.append(i)
+                balls += 1
+            answer[i] += operations
+            operations += balls
 
-        for i in range(0, len(boxes)):
-            total_move = 0
-            for j in index_with_one:
-                if i != j:
-                    total_move += abs(i - j)
-            answer.append(total_move)
-
+        balls = 0
+        operations = 0
+        # Right sweep
+        for i in range(length - 1, -1, -1):
+            if boxes[i] == '1':
+                balls += 1
+            answer[i] += operations
+            operations += balls
+        
         return(answer)
