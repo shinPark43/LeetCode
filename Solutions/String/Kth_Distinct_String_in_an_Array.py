@@ -6,15 +6,17 @@ class Solution(object):
         :rtype: str
         """
 
-        distinct_list = []
+        distinct_hashmap = {}
         for string in arr:
-            if string not in distinct_list:
-                distinct_list.append(string)
+            if string not in distinct_hashmap:
+                distinct_hashmap[string] = 1
+            else:
+                distinct_hashmap[string] += 1
 
         distinct_string = []
 
-        for string in distinct_list:
-            if arr.count(string) == 1:
+        for string in arr:
+            if distinct_hashmap[string] == 1:
                 distinct_string.append(string)
         
         if k > len(distinct_string):
